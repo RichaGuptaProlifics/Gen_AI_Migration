@@ -1,0 +1,69 @@
+     H
+     Fshippf    if a e           k disk
+     fshipdspf1 cf   e             workstn
+     F                                     sfile (sfldata:rrn§)
+     drrn§             S              4s 0
+      /free
+        exsr clearsr;
+        exsr loadsr;
+        write footer;
+        DoW *in03 = *off;
+          exfmt sflctl;
+          if *in06 = *on;
+            ShipId =0;
+            ShipDesc = *Blanks;
+            ShipDate = *Blanks;
+            DoW *In12 = *off;
+              exfmt addrec;
+              exSr $addRec;
+            EndDo;
+            *In12 = *off;
+             exsr clearsr;
+             exsr loadsr;
+          endif;
+          if *in04 = *on;
+            exfmt delrec;
+          endif;
+        EndDo;
+        *inlr=*on;
+      /end-free
+      ***************************
+      /free
+        begsr ClearSr;
+        *in50 = *off;
+        write sflctl;
+        *in50 = *on;
+        rrn§ = 0;
+        endsr;
+      /end-free
+      **********
+      /free
+        BegSr LoadSr;
+        Setll *loval shippf;
+        read shippf;
+        DoW Not %Eof(shippf);
+          RRN§ = RRN§ + 1;
+          write sfldata;
+          read shippf;
+        enddo;
+        endsr;
+      /end-free
+      ******
+      /free
+        BegSr $addRec;
+          if Shipid = 0;
+            WErrMsg ='Invalid ShipId';
+            elseif ShipDesc = *Blanks;
+              WerrMsg ='Blank Desc';
+            Elseif Shipdate = *Blanks;
+              WerrMsg = 'Blank date';
+            else;
+              rrn§ = rrn§ +1;
+              Write clntrec;
+              WErrMsg = 'Successful';
+              ShipId = 0;
+              ShipDesc = *Blanks;
+              ShipDate = *Blanks;
+            Endif;
+        EndSr;
+      /end-free

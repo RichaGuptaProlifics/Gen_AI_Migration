@@ -1,0 +1,66 @@
+     A*%%TS  SD  20240710  040818  CKISAYAN    REL-V7R5M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A          R SFLDATA                   SFL
+     A*%%TS  SD  20240709  220354  CKISAYAN    REL-V7R5M0  5770-WDS
+     A            SHIPID    R        O 10  6REFFLD(CLNTREC/SHIPID CKISAYAN1/SHI-
+     A                                      PPF)
+     A            SHIPDESC  R        O 10 24REFFLD(CLNTREC/SHIPDESC CKISAYAN1/S-
+     A                                      HIPPF)
+     A            SHIPDATE  R        O 10 63REFFLD(CLNTREC/SHIPDATE CKISAYAN1/S-
+     A                                      HIPPF)
+     A          R SFLCTL                    SFLCTL(SFLDATA)
+     A*%%TS  SD  20240710  014534  CKISAYAN    REL-V7R5M0  5770-WDS
+     A                                      CA03(03 'Exit')
+     A                                      CA06(06 'Add')
+     A                                      CA04(04 'Delivery')
+     A                                      OVERLAY
+     A  50                                  SFLDSP
+     A  50                                  SFLDSPCTL
+     A N50                                  SFLCLR
+     A  50                                  SFLEND(*MORE)
+     A                                      SFLSIZ(0100)
+     A                                      SFLPAG(0003)
+     A                                  1  2DATE
+     A                                      EDTCDE(Y)
+     A                                  1 63TIME
+     A                                  5 26'sample subfile for shipment'
+     A                                      DSPATR(UL)
+     A                                      COLOR(TRQ)
+     A                                  9  6'Ship Id'
+     A                                      COLOR(WHT)
+     A                                  9 24'Ship Desc'
+     A                                      COLOR(WHT)
+     A                                  9 63'Ship date'
+     A                                      COLOR(WHT)
+     A          R FOOTER
+     A*%%TS  SD  20240710  014534  CKISAYAN    REL-V7R5M0  5770-WDS
+     A                                 22 22'F3=Exit'
+     A                                 22 35'F6=Add'
+     A                                 22 47'F4=Delivery'
+     A          R ADDREC
+     A*%%TS  SD  20240710  040818  CKISAYAN    REL-V7R5M0  5770-WDS
+     A                                      CA12(12 'Cancel')
+     A                                      WINDOW(4 15 13 55)
+     A                                  1 14'New Shipment'
+     A                                      DSPATR(UL)
+     A                                      COLOR(TRQ)
+     A                                  3  1'Shipment Id:'
+     A                                  5  1'Shipment Desc:'
+     A                                  7  1'Shipment Date:'
+     A                                 12  5'Enter=Add'
+     A                                      COLOR(BLU)
+     A                                 12 20'F12=Cancel'
+     A                                      COLOR(YLW)
+     A            WERRMSG       25A  O 10  7
+     A            SHIPID    R        B  3 16REFFLD(CLNTREC/SHIPID CKISAYAN1/SHI-
+     A                                      PPF)
+     A            SHIPDATE  R        B  7 16REFFLD(CLNTREC/SHIPDATE CKISAYAN1/S-
+     A                                      HIPPF)
+     A            SHIPDESC  R        B  5 16REFFLD(CLNTREC/SHIPDESC CKISAYAN1/S-
+     A                                      HIPPF)
+     A          R DELREC
+     A*%%TS  SD  20240710  014534  CKISAYAN    REL-V7R5M0  5770-WDS
+     A                                  1 31'Deliveries'
+     A                                      COLOR(WHT)
+     A                                      DSPATR(UL)

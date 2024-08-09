@@ -1,0 +1,5 @@
+     A          R CLNTREC
+     A            SHIPID        10S 0         COLHDG('SHIPPING ID')
+     A            SHIPDESC      25A         COLHDG('SHIPPING DESC')
+     A            SHIPDATE      10A         COLHDG('SHIPPING DATE')
+     A          K SHIPID
